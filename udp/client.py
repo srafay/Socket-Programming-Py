@@ -11,13 +11,13 @@ fileName = input("Enter the name of file you want to send(with extension) : ");
 f = open(fileName,'rb')
 print ("Sending File name");
 s.sendto(fileName.encode('latin-1'), (host,port));
-l = f.read(1024*50)            # Read into buffer for sending
+l = f.read(1024)            # Read into buffer for sending
 while (l):
     i+=1
     print ('Sending...'+str(i));
     s.sendto(l,(host,port))
-    l = f.read(1024*50)
-s.sendto("0".encode('latin-1'), (host,port)) # Custom EOF
+    l = f.read(1024)
+s.sendto("$$$0$$$".encode('latin-1'), (host,port)) # Custom EOF
 f.close()
 print ("Done Sending");
 s.shutdown(socket.SHUT_WR)
