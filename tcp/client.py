@@ -6,10 +6,11 @@ port = 12345                 # Reserve a port for your service.
 
 s.connect((host, port))
 
-file_Name = input("Enter the name of file you want to send(with extension) : ");
+fileName = input("Enter the name of file you want to send(with extension) : ");
                   
-f = open(file_Name,'rb')
+f = open(fileName,'rb')
 print ("Sending...");
+s.send(fileName.encode('utf-8'));
 l = f.read(1024)            # Read into buffer for sending
 while (l):
     i+=1
