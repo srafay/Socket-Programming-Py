@@ -14,11 +14,11 @@ while True:
     print ("Receiving...");
     fileName = c.recv(1024)
     f = open('received files/'+str(fileName.decode('utf-8')),'wb')
-    l = c.recv(1024)        ## Receive data from socket (buffer size 1024)
+    l = c.recv(1024*1000)        ## Receive data from socket (buffer size 1024)
     while (l):
         print ("Receiving...");
         f.write(l)
-        l = c.recv(1024)
+        l = c.recv(1024*1000)
     f.close()
     print ("Done Receiving");
     c.send(b'Thank you for connecting');
