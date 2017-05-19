@@ -1,6 +1,6 @@
 import socket               # Import socket module
-i=0;
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+i=0;                        # for segment counts
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # IPv4, UDP connection
 host = socket.gethostname() # Get local machine name
 port = 12345                 # Reserve a port for your service.
 
@@ -17,7 +17,7 @@ while (l):
     print ('Sending...'+str(i));
     s.sendto(l,(host,port))
     l = f.read(1024)
-s.sendto("$$$0$$$".encode('utf-8'), (host,port))
+s.sendto("$$$0$$$".encode('utf-8'), (host,port)) # Custom EOF
 f.close()
 print ("Done Sending");
 s.shutdown(socket.SHUT_WR)
