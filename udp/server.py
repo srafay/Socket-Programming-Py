@@ -1,4 +1,6 @@
 import socket               # Import socket module
+import time
+
 i=0;
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #IPv4, UDP connection
 host = socket.gethostname() # Get local machine name
@@ -13,15 +15,19 @@ while True:
     print ("Receiving...");
 #    fileName = s.recvfrom(1024)
     f = open('received files/'+str(data.strip().decode('latin-1')),'wb')
-    data, addr = s.recvfrom(1024) # Receive data from whoever is sending
+    startTime = time.time();
+    data, addr = s.recvfrom(1024*50) # Receive data from whoever is sending
     while (data):
         if (data.decode('latin-1') == "$$$0$$$"): #close connection if EOF
             break
         i+=1
         print ("Receiving..."+str(i));
         f.write(data)
-        data, addr = s.recvfrom(1024)
+        data, addr = s.recvfrom(1024*50)
+    endTime = time.time();
+    tTime = endTime - startTime;
     f.close()
     print ("Done Receiving");
+    print ("total time: " + str(tTime));
     s.sendto(b'Thank you for connecting', (host,port));
     s.close()                # Close the connection

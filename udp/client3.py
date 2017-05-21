@@ -4,7 +4,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # IPv4, UDP connection
 host = socket.gethostname() # Get local machine name
 port = 12345                 # Reserve a port for your service.
 
-s.connect((host, port))
+#s.connect((host, port))
 
 fileName = input("Enter the name of file you want to send(with extension) : ");
                   
